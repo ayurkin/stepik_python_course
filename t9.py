@@ -1,9 +1,10 @@
 def convert_s_to_format(sec):
-    days = sec // (24*60*60)
-    h = (sec - days*24*60*60) // (60*60)
-    m = (sec - days*24*60*60 - h*60*60) // 60
-    sec1 = sec - (days*24*60*60 + h*60*60 + m*60)
+    days = sec // (24 * 60 * 60)
+    h = (sec - days * 24 * 60 * 60) // (60 * 60)
+    m = (sec - days * 24 * 60 * 60 - h * 60 * 60) // 60
+    sec1 = sec - (days * 24 * 60 * 60 + h * 60 * 60 + m * 60)
     print(f'{days}:{h}:{m}:{sec1}')
+
 
 convert_s_to_format(1234565)
 
@@ -16,5 +17,6 @@ def convert(seconds):
     minutes = seconds // 60
     seconds %= 60
     print(f'{days}:{hours}:{minutes}:{seconds}')
+
 
 convert(1234565)
