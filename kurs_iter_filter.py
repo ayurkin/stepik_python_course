@@ -26,7 +26,6 @@ class multifilter:
             return False
 
     def __init__(self, iterable, *funcs, judge=judge_any):
-    # def __init__(self, iterable, *funcs):
         self.iterable = iterable
         self.i = -1
         self.pos = 0
@@ -46,11 +45,11 @@ class multifilter:
         while self.i < len(self.iterable) - 1:
             self.i += 1
             self.pos, self.neg = self.calc(self.iterable[self.i])
-            if self.judge(self.pos, self.neg):
+            if self.judge(self, self.pos, self.neg):
                 return self.iterable[self.i]
         else:
             raise StopIteration
 
 
-x = multifilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10,12], mul2, mul3)
+x = multifilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10,12], mul2, mul3, judge=multifilter.judge_all)
 print(list(x))
