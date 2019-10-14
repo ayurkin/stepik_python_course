@@ -21,8 +21,10 @@ class RandomIterator:
 
 x = RandomIterator(3)
 
-for i in RandomIterator(10):
-    print(i)
-
-for i in RandomIterator(10):
-    print(i)
+# for i in RandomIterator(10):
+#     print(i)
+#
+# for i in RandomIterator(10):
+#     print(i)
+#
+print(list(RandomIterator(4)))
