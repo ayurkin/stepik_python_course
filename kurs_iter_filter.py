@@ -8,26 +8,17 @@ def mul3(x):
 
 class multifilter:
     def judge_half(self, pos, neg):  # допускает элемент, если его допускает хотя бы половина фукнций (pos >= neg)
-        if pos >= neg:
-            return True
-        else:
-            return False
+        return pos >= neg
 
     def judge_any(self, pos, neg):  # допускает элемент, если его допускает хотя бы одна функция (pos >= 1)
-        if pos >= 1:
-            return True
-        else:
-            return False
+        return pos > 0
 
     def judge_all(self, pos, neg):  # допускает элемент, если его допускают все функции (neg == 0)
-        if neg == 0:
-            return True
-        else:
-            return False
+        return neg == 0
 
     def __init__(self, iterable, *funcs, judge=judge_any):
         self.iterable = iterable
-        self.i = -1
+        self.i = 0
         self.pos = 0
         self.neg = 0
         self.funcs = funcs
@@ -42,11 +33,14 @@ class multifilter:
         return res.count(True), res.count(False)
 
     def __next__(self):
-        while self.i < len(self.iterable) - 1:
+        while self.i < len(self.iterable):
+            pos = neg = 0
             self.i += 1
-            self.pos, self.neg = self.calc(self.iterable[self.i])
+
+
+            self.pos, self.neg = self.calc(self.iterable[self.i - 1])
             if self.judge(self, self.pos, self.neg):
-                return self.iterable[self.i]
+                return self.iterable[self.i - 1]
         else:
             raise StopIteration
 
