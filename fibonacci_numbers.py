@@ -4,7 +4,7 @@ def fib(k):
     else:
         return fib(k - 1) + fib(k - 2)
 
-for k in range(10):
+for k in range(15):
     print(fib(k))
 
 print(fib(4))

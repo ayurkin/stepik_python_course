@@ -34,9 +34,7 @@ class multifilter:
 
     def __next__(self):
         while self.i < len(self.iterable):
-            pos = neg = 0
             self.i += 1
-
 
             self.pos, self.neg = self.calc(self.iterable[self.i - 1])
             if self.judge(self, self.pos, self.neg):
@@ -45,5 +43,5 @@ class multifilter:
             raise StopIteration
 
 
-x = multifilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10,12], mul2, mul3, judge=multifilter.judge_all)
+x = multifilter([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12], mul2, mul3, judge=multifilter.judge_all)
 print(list(x))

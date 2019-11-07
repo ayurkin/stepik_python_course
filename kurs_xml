@@ -1,0 +1,56 @@
+from xml.etree.ElementTree import XMLParser
+
+xml_elements = []
+xml_elements_dict = dict()
+
+
+class MaxDepth:  # The target object of the parser
+    maxDepth = 0
+    depth = 0
+
+    global xml_elements
+    global xml_elements_dict
+
+    def start(self, tag, attrib):  # Called for each opening tag.
+        self.depth += 1
+        xml_elements_dict[attrib['color']] = 0
+        xml_elements.append(attrib['color'] + " " + str(self.depth))
+        if self.depth > self.maxDepth:
+            self.maxDepth = self.depth
+
+    def end(self, tag):  # Called for each closing tag.
+        self.depth -= 1
+
+    def data(self, data):
+        pass  # We do not need to do anything with data.
+
+    def close(self):  # Called when all data has been parsed.
+        return self.maxDepth
+
+
+target = MaxDepth()
+parser = XMLParser(target=target)
+exampleXml = """
+<a>
+  <b>
+  </b>
+  <b>
+    <c>
+      <d>
+      </d>
+    </c>
+  </b>
+</a>"""
+my_xml = """<cube color="blue"><cube color="red"><cube color="green"></cube></cube><cube color="red"></cube></cube>"""
+parser.feed(my_xml)
+
+parser.close()
+
+
+for i in range(len(xml_elements)):
+    xml_elements[i] = xml_elements[i].split()
+for i in xml_elements:
+    xml_elements_dict[i[0]] += int(i[1])
+
+print(xml_elements_dict['red'], xml_elements_dict['green'], xml_elements_dict['blue'])
+
