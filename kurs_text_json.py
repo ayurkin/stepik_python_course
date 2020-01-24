@@ -16,18 +16,28 @@ student2 = {
 }
 
 data = [student1, student2]
-print(json.dumps(data, indent=4, sort_keys=True))
+
 with open("students.json", "w") as f:
     json.dump(data, f, indent=4, sort_keys=True)
 
-data_json = json.dumps(data, indent=4, sort_keys=True)
-data_again = json.loads(data_json)
-# print(sum(data_again[0]["scores"]))
-
 with open("students.json", "r") as f:
     data_again = json.load(f)
-    print(sum(data_again[1]["scores"]))
 
-json_input = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}]'
-data_from_input_json = json.loads(json_input)
-print(data_from_input_json)
+data_json = json.dumps(data, indent=4, sort_keys=True)
+data_again = json.loads(data_json)
+
+
+
+print("data_again", data_again)
+# # print(sum(data_again[0]["scores"]))
+#
+
+
+# print(json.dumps(data, indent=4, sort_keys=True))
+# print(json.dumps(student1, indent=4, sort_keys=True))
+
+#     print(sum(data_again[1]["scores"]))
+#
+# json_input = '[{"name": "A", "parents": []}, {"name": "B", "parents": ["A", "C"]}, {"name": "C", "parents": ["A"]}]'
+# data_from_input_json = json.loads(json_input)
+# print(data_from_input_json)
